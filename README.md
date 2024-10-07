@@ -76,7 +76,7 @@ For full functionality, the dataset should contain the following columns:
 ## Sample Dataset
 
 You can use a sample dataset of GitHub repositories from Kaggle for testing:
-[GitHub Repositories Dataset](https://www.kaggle.com/)
+[GitHub Repositories Dataset][(https://www.kaggle.com/)](https://www.kaggle.com/datasets/nikhil25803/github-dataset/data)
 
 ## License
 
