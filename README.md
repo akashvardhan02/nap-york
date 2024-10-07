@@ -45,7 +45,7 @@ The **GitHub Repository Dashboard** is an interactive web application built usin
 
 3. Run the Streamlit app:
     ```bash
-    streamlit run app.py
+    streamlit run Dashboard.py
     ```
 
 ## How to Use
