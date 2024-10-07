@@ -1,10 +1,10 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
-import os
-import warnings
+import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+import warnings
 
 warnings.filterwarnings('ignore')
 
@@ -22,6 +22,7 @@ if fl is not None:
     # Handling CSV tokenization issues
     try:
         df = pd.read_csv(fl, delimiter=',', encoding="ISO-8859-1", on_bad_lines='skip')
+        st.success("File uploaded and read successfully!")
     except pd.errors.ParserError as e:
         st.error(f"Error reading CSV file: {str(e)}")
         st.stop()
@@ -96,7 +97,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
         # Download button for Stars Count by Language and Repository
         csv = category_df.to_csv(index=False).encode('utf-8')
-        st.download_button("Download Stars Count Data", data=csv, file_name="stars_count_by_language_repository.csv", mime="text/csv", help="Download the stars count data")
+        st.download_button("Download Stars Count Data", data=csv, file_name="stars_count_by_language_repository.csv", mime="text/csv")
 
     # Updated Pie Chart: Distribution of Programming Languages
     with col2:
@@ -108,7 +109,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
         # Download button for Language Distribution Pie Chart
         csv = language_distribution.to_csv(index=False).encode('utf-8')
-        st.download_button("Download Language Distribution Data", data=csv, file_name="language_distribution.csv", mime="text/csv", help="Download the language distribution data")
+        st.download_button("Download Language Distribution Data", data=csv, file_name="language_distribution.csv", mime="text/csv")
 
     # Heatmap for correlation analysis
     st.subheader("Correlation Heatmap")
@@ -119,7 +120,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
     # Download button for Heatmap correlation data
     corr_csv = corr_matrix.to_csv().encode('utf-8')
-    st.download_button("Download Correlation Data", data=corr_csv, file_name="correlation_data.csv", mime="text/csv", help="Download the correlation data")
+    st.download_button("Download Correlation Data", data=corr_csv, file_name="correlation_data.csv", mime="text/csv")
 
     # Bubble Chart: Stars vs Forks with Contributors as Size
     st.subheader("Stars vs Forks with Contributors as Bubble Size")
@@ -129,7 +130,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
     # Download button for Bubble chart data
     bubble_data = df_filtered[['stars_count', 'forks_count', 'contributors', 'language']].to_csv(index=False).encode('utf-8')
-    st.download_button("Download Bubble Chart Data", data=bubble_data, file_name="bubble_chart_data.csv", mime="text/csv", help="Download the bubble chart data")
+    st.download_button("Download Bubble Chart Data", data=bubble_data, file_name="bubble_chart_data.csv", mime="text/csv")
 
     # Treemap for stars distribution by language and repository
     st.subheader("Treemap of Stars by Language and Repository")
@@ -138,7 +139,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
     # Download button for Treemap data
     treemap_data = df_filtered[['language', 'repositories', 'stars_count']].to_csv(index=False).encode('utf-8')
-    st.download_button("Download Treemap Data", data=treemap_data, file_name="treemap_data.csv", mime="text/csv", help="Download the treemap data")
+    st.download_button("Download Treemap Data", data=treemap_data, file_name="treemap_data.csv", mime="text/csv")
 
     # Additional Chart: Contributors by Language
     st.subheader("Contributors per Language")
@@ -148,7 +149,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
     # Download button for Contributors per Language
     contributors_csv = contributors_chart.to_csv(index=False).encode('utf-8')
-    st.download_button("Download Contributors Data", data=contributors_csv, file_name="contributors_by_language.csv", mime="text/csv", help="Download the contributors data")
+    st.download_button("Download Contributors Data", data=contributors_csv, file_name="contributors_by_language.csv", mime="text/csv")
 
     # Line Chart: Stars Over Time (assuming you have a 'created_at' column)
     if 'created_at' in df.columns:
@@ -159,6 +160,7 @@ if 'language' in df.columns and 'repositories' in df.columns and 'contributors' 
 
         # Download button for Stars Over Time data
         stars_time_csv = stars_over_time.to_csv(index=False).encode('utf-8')
-        st.download_button("Download Stars Over Time Data", data=stars_time_csv, file_name="stars_over_time.csv", mime="text/csv", help="Download the stars over time data")
+        st.download_button("Download Stars Over Time Data", data=stars_time_csv, file_name="stars_over_time.csv", mime="text/csv")
+
 else:
     st.error("The required columns are not available in the dataset.")
