@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -27,8 +26,8 @@ if fl is not None:
         st.error(f"Error reading CSV file: {str(e)}")
         st.stop()
 else:
-    os.chdir(r"C:\Users\akash\OneDrive\Desktop\dashboard\project")
-    df = pd.read_csv("github_dataset.csv", encoding="ISO-8859-1", on_bad_lines='skip')
+    st.error("Please upload a file to proceed.")
+    st.stop()
 
 # Ensure necessary columns exist
 if 'language' in df.columns and 'repositories' in df.columns and 'contributors' in df.columns:
